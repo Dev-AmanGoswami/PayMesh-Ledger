@@ -1,0 +1,17 @@
+dataSources:
+  shardWallet1:
+    url: jdbc:mysql://localhost:3306/shardWallet1
+    username: root
+    password: Aman123@
+    driverClassName: com.mysql.cj.jdbc.Driver
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+
+  shardWallet2:
+    url: jdbc:mysql://localhost:3306/shardWallet2
+    username: root
+    password: Aman123@
+    driverClassName: com.mysql.cj.jdbc.Driver
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+
+rules:
+  - !SHARDING
