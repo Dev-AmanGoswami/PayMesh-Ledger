@@ -15,3 +15,27 @@ dataSources:
 
 rules:
   - !SHARDING
+    defaultDatabaseStrategy:
+      standard:
+        shardingColumn: id
+        shardingAlgorithmName: db-inline
+    tables:
+      user:
+        actualDataNodes: shardWallet${1..2}.user
+        databaseStrategy:
+          standard:
+            shardingColumn: id
+            shardingAlgorithmName: db-inline
+        keyGenerateStrategy:
+          column: id
+          keyGeneratorName: snowflakeStrategy
+
+    shardingAlgorithms:
+      db-inline:
+        type: INLINE
+        props:
+          algorithm-expression: shardWallet_${id % 2 + 1}
+
+    keyGenerators:
+      snowflakeStrategy:
+        type: SNOWFLAKE
