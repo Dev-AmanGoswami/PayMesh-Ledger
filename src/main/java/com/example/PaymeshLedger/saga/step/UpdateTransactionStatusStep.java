@@ -12,10 +12,9 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class UpdateTransactionStatusStepI implements ISagaStep {
+public class UpdateTransactionStatusStep implements ISagaStep {
     private final TransactionRepository transactionRepository;
 
-    private static final String STEP_NAME = "UpdateTransactionStatus";
     private static final String TRANSACTION_ID_KEY = "transactionId";
     private static final String ORIGINAL_TRANSACTION_STATUS_KEY = "originalTransactionStatus";
     private static final String TRANSACTION_STATUS_AFTER_UPDATE_KEY = "transactionStatusAfterUpdateKey";
@@ -63,6 +62,6 @@ public class UpdateTransactionStatusStepI implements ISagaStep {
 
     @Override
     public String getStepName() {
-        return STEP_NAME;
+        return SagaStepType.UPDATE_TRANSACTION_STATUS_STEP.toString();
     }
 }

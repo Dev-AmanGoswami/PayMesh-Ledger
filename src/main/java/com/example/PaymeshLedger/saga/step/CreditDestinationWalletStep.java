@@ -14,10 +14,8 @@ import java.math.BigDecimal;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CreditDestinationWalletStepI implements ISagaStep {
+public class CreditDestinationWalletStep implements ISagaStep {
     private final WalletRepository walletRepository;
-
-    private static final String STEP_NAME = "CreditDestinationWalletStep";
 
     private static final String TO_WALLET_ID_KEY = "toWalletId";
     private static final String AMOUNT_KEY = "amount";
@@ -82,6 +80,6 @@ public class CreditDestinationWalletStepI implements ISagaStep {
 
     @Override
     public String getStepName(){
-        return STEP_NAME;
+        return SagaStepType.CREDIT_DESTINATION_WALLET_STEP.toString();
     }
 }

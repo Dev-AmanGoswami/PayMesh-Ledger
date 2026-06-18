@@ -2,15 +2,17 @@ package com.example.PaymeshLedger.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.calcite.model.JsonType;
 import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.annotations.Type;
 import org.hibernate.type.SqlTypes;
+
+import java.time.LocalDateTime;
 
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -22,13 +24,13 @@ public class SagaInstance {
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private SagaStatus sagaStatus = SagaStatus.STARTED;
+    private SagaStatus status = SagaStatus.STARTED;
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "context", columnDefinition = "json")
     private String context;
 
-    @Column(name = "current_step", nullable = false)
+    @Column(name = "current_step")
     private String currentStep;
 }
 
