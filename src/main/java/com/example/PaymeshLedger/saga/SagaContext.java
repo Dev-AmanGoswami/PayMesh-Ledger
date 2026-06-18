@@ -1,6 +1,5 @@
 package com.example.PaymeshLedger.saga;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -37,6 +36,15 @@ public class SagaContext {
         Object value = data.get(key);
         if(value instanceof Number){
             return BigDecimal.valueOf(((Number) value).doubleValue());
+        }
+
+        return null;
+    }
+
+    public String getString(String key){
+        Object value = data.get(key);
+        if(value instanceof String){
+            return value.toString();
         }
 
         return null;

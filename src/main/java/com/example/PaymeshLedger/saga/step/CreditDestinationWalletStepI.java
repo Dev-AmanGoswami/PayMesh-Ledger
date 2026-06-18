@@ -3,7 +3,7 @@ package com.example.PaymeshLedger.saga.step;
 import com.example.PaymeshLedger.entity.Wallet;
 import com.example.PaymeshLedger.repository.WalletRepository;
 import com.example.PaymeshLedger.saga.SagaContext;
-import com.example.PaymeshLedger.saga.SagaStep;
+import com.example.PaymeshLedger.saga.ISagaStep;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CreditDestinationWalletStep implements SagaStep {
+public class CreditDestinationWalletStepI implements ISagaStep {
     private final WalletRepository walletRepository;
 
     private static final String STEP_NAME = "CreditDestinationWalletStep";

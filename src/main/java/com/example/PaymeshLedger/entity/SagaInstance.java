@@ -5,7 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.calcite.model.JsonType;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.Type;
+import org.hibernate.type.SqlTypes;
 
 
 @Data
@@ -22,7 +24,7 @@ public class SagaInstance {
     @Column(name = "status", nullable = false)
     private SagaStatus sagaStatus = SagaStatus.STARTED;
 
-    @Type(JsonType.class)
+    @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "context", columnDefinition = "json")
     private String context;
 
