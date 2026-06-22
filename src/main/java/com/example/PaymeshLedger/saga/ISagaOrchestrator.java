@@ -7,7 +7,7 @@ public interface ISagaOrchestrator {
 
     boolean executeStep(Long sagaInstanceId, String stepName);
 
-    boolean compensate(Long sagaInstanceId, String stepName);
+    boolean compensateStep(Long sagaInstanceId, String stepName);
 
     SagaInstance getSagaInstance(Long sagaInstanceId);
 
