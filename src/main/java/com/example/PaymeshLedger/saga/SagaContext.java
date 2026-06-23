@@ -1,5 +1,6 @@
 package com.example.PaymeshLedger.saga;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 @Data
+@Builder
 @NoArgsConstructor
 public class SagaContext {
     private Map<String, Object> data;
