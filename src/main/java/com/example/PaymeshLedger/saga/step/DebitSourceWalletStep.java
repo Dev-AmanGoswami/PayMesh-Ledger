@@ -30,14 +30,13 @@ public class DebitSourceWalletStep implements ISagaStep {
 
         log.info("Debiting source wallet {} with amount {}", fromWalletId, amount);
 
-        Wallet wallet = walletRepository.findByIdWithLock(fromWalletId)
+        Wallet wallet = walletRepository.findByUserIdWithLock(fromWalletId)
                 .orElseThrow(() -> new RuntimeException("Wallet not found"));
 
         log.info("Wallet fetched with balance {}", wallet.getBalance());
         context.put(ORIGINAL_SOURCE_WALLET_BALANCE_KEY, wallet.getBalance());
 
-        wallet.debit(amount);
-        walletRepository.save(wallet);
+        walletRepository.updateBalanceByUserId(fromWalletId, wallet.getBalance().subtract(amount));
 
         log.info("Wallet saved with balance {}", wallet.getBalance());
         context.put(SOURCE_WALLET_BALANCE_AFTER_DEBIT_KEY, wallet.getBalance());
@@ -54,14 +53,13 @@ public class DebitSourceWalletStep implements ISagaStep {
 
         log.info("Compensating source wallet {} with amount {}", fromWalletId, amount);
 
-        Wallet wallet = walletRepository.findByIdWithLock(fromWalletId)
+        Wallet wallet = walletRepository.findByUserIdWithLock(fromWalletId)
                 .orElseThrow(() -> new RuntimeException("Wallet not found"));
 
         log.info("Wallet fetched with balance {}", wallet.getBalance());
         context.put(SOURCE_WALLET_BALANCE_BEFORE_DEBIT_COMPENSATION_KEY, wallet.getBalance());
 
-        wallet.credit(amount);
-        walletRepository.save(wallet);
+        walletRepository.updateBalanceByUserId(fromWalletId, wallet.getBalance().add(amount));
 
         log.info("Wallet saved with balance {}", wallet.getBalance());
         context.put(SOURCE_WALLET_BALANCE_AFTER_DEBIT_COMPENSATION_KEY, wallet.getBalance());

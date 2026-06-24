@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background: #ffffff;
+  color: #202124;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle scrollbar to match Google's clean look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #dadce0;
+  border-radius: 8px;
+}

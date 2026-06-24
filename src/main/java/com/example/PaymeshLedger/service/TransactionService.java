@@ -3,6 +3,7 @@ package com.example.PaymeshLedger.service;
 import com.example.PaymeshLedger.entity.SagaStatus;
 import com.example.PaymeshLedger.entity.Transaction;
 import com.example.PaymeshLedger.entity.TransactionStatus;
+import com.example.PaymeshLedger.entity.TransactionType;
 import com.example.PaymeshLedger.repository.TransactionRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,8 @@ public class TransactionService {
                     .toWalletId(toWalletId)
                     .amount(amount)
                     .description(description)
+                    .status(TransactionStatus.PENDING)
+                    .transactionType(TransactionType.TRANSFER)
                     .build()
         );
     }
